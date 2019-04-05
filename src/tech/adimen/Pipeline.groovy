@@ -47,6 +47,7 @@ class Pipeline implements Serializable {
     }
 
     public Map getConfig(String name) {
+        println(config)
         config[name] ?: [:]
     }
 
