@@ -4,11 +4,9 @@ def call(body) {
 
     MPLPipeline {
         agent_label = 'master'
-        modules = [
-                Checkout: [:],
-                Analyze : [:],
-                Build   : [:]
-        ]
+        modules.Deploy = null
+        modules.Test = null
+        modules.Analyze = [:]
         maven = [
                 tool           : 'M3',
                 settings_config: 'nexus_maven_settings',
