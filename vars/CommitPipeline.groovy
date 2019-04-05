@@ -1,25 +1,30 @@
 def call(body) {
-    // Init the MPL library
-    MPLInit()
-
-    MPLPipeline {
-        agent_label = 'master'
-        modules = [
-                Checkout: [:],
-                Analyze : [:],
-                Build   : [:]
-        ]
-//        modules.Deploy = null
-//        modules.Test = null
-//        modules.Analyze = [:]
-        maven = [
-                tool           : 'M3',
-                settings_config: 'nexus_maven_settings',
-                extra_args     : '-DskipTests'
-        ]
-        sonarqube = [
-                server: 'sonar_server'
-        ]
+    pipeline {
+        agent any
+        options {
+            skipDefaultCheckout(true)
+        }
+        stages {
+            stage( 'Checkout' ) {
+                checkout scm
+            }
+            stage( 'Analyze' ) {
+                sonar.analyze()
+            }
+            stage( 'Deploy' ) {
+                maven.deploy()
+            }
+        }
+        post {
+            always {
+                echo "Always actions"
+            }
+            success {
+                echo "Success actions"
+            }
+            failure {
+                echo "Failure actions"
+            }
+        }
     }
-
 }

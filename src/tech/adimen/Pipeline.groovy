@@ -10,7 +10,6 @@ class Pipeline implements Serializable {
     private Map postStepsErrors = [:]
 
     public init(pipelineConfig = null) {
-        println("Initializing base class")
         if( pipelineConfig in Map ) this.config = pipelineConfig
         this
     }
@@ -47,7 +46,6 @@ class Pipeline implements Serializable {
     }
 
     public Map getConfig(String name) {
-        println(config)
         config[name] ?: [:]
     }
 
