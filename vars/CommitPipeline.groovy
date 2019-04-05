@@ -4,20 +4,17 @@ def call(body) {
 
     MPLPipeline {
         agent_label: 'master'
-        modules:
-        [
+        modules = [
                 Checkout: [:],
                 Analyze : [:],
                 Build   : [:]
         ]
-        maven:
-        [
+        maven = [
                 tool           : 'M3',
                 settings_config: 'nexus_maven_settings',
                 extra_args     : '-DskipTests'
         ]
-        sonarqube:
-        [
+        sonarqube = [
                 server: 'sonar_server'
         ]
     }
