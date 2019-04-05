@@ -3,6 +3,7 @@ import tech.adimen.Pipeline
 
 def cmd(String command, String args = '') {
     def cfg = Pipeline.instance.getConfig('maven')
+    println(Pipeline.instance)
     withMaven(mavem: cfg.tool, mavenSettingsConfig: cfg.settings_config) {
         sh "mvn ${args} ${command}"
     }
