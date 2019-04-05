@@ -3,7 +3,7 @@ def call(body) {
     MPLInit()
 
     MPLPipeline {
-        agent_label: 'master'
+        agent_label = 'master'
         modules = [
                 Checkout: [:],
                 Analyze : [:],
